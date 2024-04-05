@@ -5,31 +5,28 @@
         org $4000
         put equ
 
-
 *<bp>
 *<sym>
 beginning
-        jsr loadnumbers
-        jsr initvar
-        jsr prndivid
+        jsr loadnumbers         ; load numbers from data into vars
+        jsr initvar             ; init some vars
+        jsr prndivid            ; print dividend
         jsr crout
-        jsr Dodivide              ; integer part
-        jsr prndivid
+        jsr Dodivide            ; exec division, integer part
+        jsr prndivid            ; print result of division
         jsr crout
-        jsr prnrem
-        jsr doDecimal           ; decimal part
-        jsr prndecim
+        jsr prnrem              ; print remainder
+        jsr doDecimal           ; exec division, decimal part
+        jsr prndecim            ; print decimal part of result
 *<sym>
 end_of_program
         rts
 *
 *
-*
-*
 *<sym>
 *<bp>
-Dodivide
-	ldx #32	        ;repeat for each bit: ...
+Dodivide                        ; division, integer part
+	ldx #32	        
 *<sym>
 divloop
         asl dividend
@@ -78,9 +75,9 @@ skip
 
 **************
 *<sym>
-doDecimal
+doDecimal                       ; division, decimal part
 
-        ldx #32
+        ldx #32                 ; 32 bits to examine
 *<sym>
 divloopdec                      ; on entry, remainder < divisor
         asl remainder           ; remainder = remainder * 2
@@ -127,7 +124,7 @@ skipdec
         dex                     ; next loop
         bne divloopdec
         rts
-**************
+
 
 * * * * * * * * * * * * * * * * * * * * 
 *               Utilities
