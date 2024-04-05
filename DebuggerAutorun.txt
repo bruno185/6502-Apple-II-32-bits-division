@@ -1,0 +1,28 @@
+bp 4000
+bp 4026
+m1 4175
+m2 4179
+sym beginning = 4000
+sym end_of_program = 4025
+sym Dodivide = 4026
+sym divloop = 4028
+sym rolrem = 4034
+sym m43 = 4069
+sym skip = 4075
+sym doDecimal = 4079
+sym divloopdec = 407B
+sym skipdec = 40D1
+sym loadnumbers = 40D5
+sym m4 = 40D7
+sym m42 = 40E2
+sym initvar = 40EC
+sym prndivid = 4107
+sym prndecim = 4125
+sym prnrem = 4148
+sym val1 = 4169
+sym val2 = 416D
+sym decimal = 4171
+sym dividend = 4175
+sym remainder = 4179
+sym divisor = 417D
+sym tempo = 4181

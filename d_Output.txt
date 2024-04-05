@@ -1,0 +1,299 @@
+------+-----------------+-------------+----+---------+------+-----------------------+-------------------------------------------------------------------
+ Line | # File     Line | Line Type   | MX |  Reloc  | Size | Address   Object Code |  Source Code                                                      
+------+-----------------+-------------+----+---------+------+-----------------------+-------------------------------------------------------------------
+    1 |  1   d.s      1 | Comment     | 11 |         |    0 | 00/8000               | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    2 |  1   d.s      2 | Comment     | 11 |         |    0 | 00/8000               | *
+    3 |  1   d.s      3 | Comment     | 11 |         |    0 | 00/8000               | *               OPTIMIZED integer DIVISION with decimal
+    4 |  1   d.s      4 | Comment     | 11 |         |    0 | 00/8000               | *
+    5 |  1   d.s      5 | Comment     | 11 |         |    0 | 00/8000               | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+    6 |  1   d.s      6 | Empty       | 11 |         |    0 | 00/8000               |                                      
+    7 |  1   d.s      7 | Equivalence | 11 |         |    0 | 00/8000               | d1              equ   1000           
+    8 |  1   d.s      8 | Equivalence | 11 |         |    0 | 00/8000               | d2              equ   3              
+    9 |  1   d.s      9 | Empty       | 11 |         |    0 | 00/8000               |                                      
+   10 |  1   d.s     10 | Directive   | 11 |         |    0 | 00/8000               |                 org   $4000          
+   11 |  1   d.s     11 | Directive   | 11 |         |    0 | 00/4000               |                 put   equ            
+   12 |  2 equ.s      1 | Comment     | 11 |         |    0 | 00/4000               | ************ ROM routines ************ 
+   13 |  2 equ.s      2 | Equivalence | 11 |         |    0 | 00/4000               | home            equ   $FC58          ; clear text screen, reset margins
+   14 |  2 equ.s      3 | Equivalence | 11 |         |    0 | 00/4000               | text            equ   $FB2F          ; text mode
+   15 |  2 equ.s      4 | Equivalence | 11 |         |    0 | 00/4000               | Bell            equ   $FBDD          ; play a sound
+   16 |  2 equ.s      5 | Equivalence | 11 |         |    0 | 00/4000               | cout            equ   $FDED          ; print char in A
+   17 |  2 equ.s      6 | Equivalence | 11 |         |    0 | 00/4000               | vtab            equ   $FC22          ; vert. tab, value must be in CV ($25)
+   18 |  2 equ.s      7 | Equivalence | 11 |         |    0 | 00/4000               | getln           equ   $FD6A          ; read line of input (=> X = length, buffer = $200)
+   19 |  2 equ.s      8 | Equivalence | 11 |         |    0 | 00/4000               | getlnz          equ   $FD67          ; = return + getln
+   20 |  2 equ.s      9 | Equivalence | 11 |         |    0 | 00/4000               | getln1          equ   $FD6F          ; = getln without prompt
+   21 |  2 equ.s     10 | Equivalence | 11 |         |    0 | 00/4000               | bascalc         equ   $FBC1          ; calc. address of line in A, put address in $28/$29
+   22 |  2 equ.s     11 | Equivalence | 11 |         |    0 | 00/4000               | crout           equ   $FD8E          ; print carriage return
+   23 |  2 equ.s     12 | Equivalence | 11 |         |    0 | 00/4000               | clreop          equ   $FC42          ; clear from cursor to end of page
+   24 |  2 equ.s     13 | Equivalence | 11 |         |    0 | 00/4000               | clreol          equ   $FC9C          ; clear from cursor to end of line
+   25 |  2 equ.s     14 | Equivalence | 11 |         |    0 | 00/4000               | prntx           equ   $F944          ; prints X in hex (2 digits)
+   26 |  2 equ.s     15 | Equivalence | 11 |         |    0 | 00/4000               | prbyte          equ   $FDDA          ; prints A in hex (2 digits)
+   27 |  2 equ.s     16 | Equivalence | 11 |         |    0 | 00/4000               | printax         equ   $F941          ; Prints current contents of the A and X in hex
+   28 |  2 equ.s     17 | Equivalence | 11 |         |    0 | 00/4000               | prntyx          equ   $F940          ; Prints current contents of the Y and X in hex
+   29 |  2 equ.s     18 | Equivalence | 11 |         |    0 | 00/4000               | rdkey           equ   $FD0C          ; wait for keypress
+   30 |  2 equ.s     19 | Equivalence | 11 |         |    0 | 00/4000               | wait            equ   $FCA8          ; monitor delay
+   31 |  2 equ.s     20 | Equivalence | 11 |         |    0 | 00/4000               | AUXMOV          equ   $C311          
+   32 |  2 equ.s     21 | Equivalence | 11 |         |    0 | 00/4000               | OUTPORT         equ   $FE95          
+   33 |  2 equ.s     22 | Equivalence | 11 |         |    0 | 00/4000               | prnxy           equ   $F940          
+   34 |  2 equ.s     23 | Equivalence | 11 |         |    0 | 00/4000               | HPOSN           equ   $F411          ; Positions hi-res“cursor” without plotting.
+   35 |  2 equ.s     24 | Comment     | 11 |         |    0 | 00/4000               |                                 ; Enter with X,Y(low,high)=horizontalposition, Accumulator = verticalposition.
+   36 |  2 equ.s     25 | Equivalence | 11 |         |    0 | 00/4000               | HPLOT           equ   $F457          ; Identical to HPOSN, but plots current HCOLOR at coordinates given.
+   37 |  2 equ.s     26 | Equivalence | 11 |         |    0 | 00/4000               | HLIN            equ   $F53A          ; Draws a line from last plot to point given.
+   38 |  2 equ.s     27 | Comment     | 11 |         |    0 | 00/4000               |                                 ; Accumulator, X (low,high) = horizontal, Y= verticalposition.
+   39 |  2 equ.s     28 | Equivalence | 11 |         |    0 | 00/4000               | HCOLOR          equ   $F6F0          ; Sets HCOLOR to contents of X-Register(0−7).
+   40 |  2 equ.s     29 | Comment     | 11 |         |    0 | 00/4000               | *
+   41 |  2 equ.s     30 | Comment     | 11 |         |    0 | 00/4000               | ************ ROM switches ************  
+   42 |  2 equ.s     31 | Equivalence | 11 |         |    0 | 00/4000               | RAMRDON         equ   $C003          ; read aux
+   43 |  2 equ.s     32 | Equivalence | 11 |         |    0 | 00/4000               | RAMRDOFF        equ   $C002          ; read main
+   44 |  2 equ.s     33 | Equivalence | 11 |         |    0 | 00/4000               | RAMWRTOFF       equ   $C004          ; write to main
+   45 |  2 equ.s     34 | Equivalence | 11 |         |    0 | 00/4000               | RAMWRTON        equ   $C005          ; write to aux
+   46 |  2 equ.s     35 | Equivalence | 11 |         |    0 | 00/4000               | ALTCHARSET0FF   equ   $C00E          
+   47 |  2 equ.s     36 | Equivalence | 11 |         |    0 | 00/4000               | ALTCHARSET0N    equ   $C00F          
+   48 |  2 equ.s     37 | Equivalence | 11 |         |    0 | 00/4000               | kbd             equ   $C000          ; ascii code of last key pressed (+ 128 if strobe not cleared)
+   49 |  2 equ.s     38 | Equivalence | 11 |         |    0 | 00/4000               | kbdstrb         equ   $C010          
+   50 |  2 equ.s     39 | Equivalence | 11 |         |    0 | 00/4000               | col80off        equ   $C00C          
+   51 |  2 equ.s     40 | Equivalence | 11 |         |    0 | 00/4000               | col80on         equ   $C00D          
+   52 |  2 equ.s     41 | Equivalence | 11 |         |    0 | 00/4000               | 80col           equ   $C01F          
+   53 |  2 equ.s     42 | Comment     | 11 |         |    0 | 00/4000               | *
+   54 |  2 equ.s     43 | Comment     | 11 |         |    0 | 00/4000               | ************ page 0 ************  
+   55 |  2 equ.s     44 | Equivalence | 11 |         |    0 | 00/4000               | cv              equ   $25            
+   56 |  2 equ.s     45 | Equivalence | 11 |         |    0 | 00/4000               | ch              equ   $24            
+   57 |  2 equ.s     46 | Equivalence | 11 |         |    0 | 00/4000               | basl            equ   $28            
+   58 |  2 equ.s     47 | Equivalence | 11 |         |    0 | 00/4000               | wndlft          equ   $20            
+   59 |  2 equ.s     48 | Equivalence | 11 |         |    0 | 00/4000               | wndwdth         equ   $21            
+   60 |  2 equ.s     49 | Equivalence | 11 |         |    0 | 00/4000               | wndtop          equ   $22            ; Top Margin (0 - 23, 0 is default, 20 in graphics mode)
+   61 |  2 equ.s     50 | Equivalence | 11 |         |    0 | 00/4000               | wndbtm          equ   $23            
+   62 |  2 equ.s     51 | Equivalence | 11 |         |    0 | 00/4000               | prompt          equ   $33            
+   63 |  2 equ.s     52 | Comment     | 11 |         |    0 | 00/4000               | *
+   64 |  2 equ.s     53 | Equivalence | 11 |         |    0 | 00/4000               | ourch           equ   $57B           ; Cursor's column position minus 1 (HTAB's place) in 80-column mode
+   65 |  2 equ.s     54 | Equivalence | 11 |         |    0 | 00/4000               | ourcv           equ   $5FB           ; 80 col vertical pos
+   66 |  2 equ.s     55 | Comment     | 11 |         |    0 | 00/4000               | *
+   67 |  2 equ.s     56 | Comment     | 11 |         |    0 | 00/4000               | ************ ProDOS ************ 
+   68 |  2 equ.s     57 | Equivalence | 11 |         |    0 | 00/4000               | GETBUFR         equ   $bef5          
+   69 |  2 equ.s     58 | Equivalence | 11 |         |    0 | 00/4000               | FREEBUFR        equ   $BEF8          
+   70 |  2 equ.s     59 | Equivalence | 11 |         |    0 | 00/4000               | devnum          equ   $BF30          ; last used device here, format : DSSS0000
+   71 |  2 equ.s     60 | Equivalence | 11 |         |    0 | 00/4000               | RSHIMEM         equ   $BEFB          
+   72 |  2 equ.s     61 | Comment     | 11 |         |    0 | 00/4000               | *
+   73 |  2 equ.s     62 | Comment     | 11 |         |    0 | 00/4000               | ************ MLI calls (ProDOS) ************
+   74 |  2 equ.s     63 | Equivalence | 11 |         |    0 | 00/4000               | MLI             equ   $BF00          
+   75 |  2 equ.s     64 | Equivalence | 11 |         |    0 | 00/4000               | create          equ   $C0            
+   76 |  2 equ.s     65 | Equivalence | 11 |         |    0 | 00/4000               | destroy         equ   $C1            
+   77 |  2 equ.s     66 | Equivalence | 11 |         |    0 | 00/4000               | online          equ   $C5            
+   78 |  2 equ.s     67 | Equivalence | 11 |         |    0 | 00/4000               | getprefix       equ   $c7            
+   79 |  2 equ.s     68 | Equivalence | 11 |         |    0 | 00/4000               | setprefix       equ   $c6            
+   80 |  2 equ.s     69 | Equivalence | 11 |         |    0 | 00/4000               | open            equ   $C8            
+   81 |  2 equ.s     70 | Equivalence | 11 |         |    0 | 00/4000               | close           equ   $CC            
+   82 |  2 equ.s     71 | Equivalence | 11 |         |    0 | 00/4000               | read            equ   $CA            
+   83 |  2 equ.s     72 | Equivalence | 11 |         |    0 | 00/4000               | write           equ   $CB            
+   84 |  2 equ.s     73 | Equivalence | 11 |         |    0 | 00/4000               | setmark         equ   $ce            
+   85 |  2 equ.s     74 | Equivalence | 11 |         |    0 | 00/4000               | geteof          equ   $d1            
+   86 |  2 equ.s     75 | Equivalence | 11 |         |    0 | 00/4000               | quit            equ   $65            
+   87 |  2 equ.s     76 | Comment     | 11 |         |    0 | 00/4000               | *
+   88 |  2 equ.s     77 | Comment     | 11 |         |    0 | 00/4000               | ************ FP routines ************
+   89 |  2 equ.s     78 | Equivalence | 11 |         |    0 | 00/4000               | float           equ   $E2F2          ; Converts SIGNED integer in A/Y (high/lo) into FAC
+   90 |  2 equ.s     79 | Equivalence | 11 |         |    0 | 00/4000               | GIVAYF          equ   $E2F2          ; idem
+   91 |  2 equ.s     80 | Equivalence | 11 |         |    0 | 00/4000               | FLOAT2          equ   $EBA0          ; "Float2" entry point (https://6502disassembly.com/a2-rom/Applesoft.html#SymLDAB7)
+   92 |  2 equ.s     81 | Comment     | 11 |         |    0 | 00/4000               |                                 ; Float UNSIGNED value in FAC+1,2 (hi,low)
+   93 |  2 equ.s     82 | Comment     | 11 |         |    0 | 00/4000               |                                 ; X-reg = exponent ; C=0 to make value negative, C=1 to make value positive
+   94 |  2 equ.s     83 | Empty       | 11 |         |    0 | 00/4000               |                                      
+   95 |  2 equ.s     84 | Equivalence | 11 |         |    0 | 00/4000               | PRNTFAC         equ   $ED2E          ; Prints number in FAC (in decimal format). FAC is destroyed
+   96 |  2 equ.s     85 | Equivalence | 11 |         |    0 | 00/4000               | FIN             equ   $EC4A          ; FAC = expression pointed TXTPTR
+   97 |  2 equ.s     86 | Equivalence | 11 |         |    0 | 00/4000               | FNEG            equ   $EED0          ; FAC = - FAC
+   98 |  2 equ.s     87 | Equivalence | 11 |         |    0 | 00/4000               | FABS            equ   $EBAF          ; FAC = ABS(FAC)
+   99 |  2 equ.s     88 | Equivalence | 11 |         |    0 | 00/4000               | F2INT16         equ   $E752          ; FAC to 16 bits int in A/Y and $50/51 (low/high)
+  100 |  2 equ.s     89 | Equivalence | 11 |         |    0 | 00/4000               | FADD            equ   $E7BE          ; FAC = FAC + ARG
+  101 |  2 equ.s     90 | Equivalence | 11 |         |    0 | 00/4000               | FSUBT           equ   $E7AA          ; FAC = FAC - ARG
+  102 |  2 equ.s     91 | Equivalence | 11 |         |    0 | 00/4000               | FMULT           equ   $E97F          ; Move the number pointed by Y,A into ARG and fall into FMULTT
+  103 |  2 equ.s     92 | Equivalence | 11 |         |    0 | 00/4000               | FMULTT          equ   $E982          ; FAC = FAC x ARG
+  104 |  2 equ.s     93 | Equivalence | 11 |         |    0 | 00/4000               | FDIVT           equ   $EA69          ; FAC = FAC / ARG
+  105 |  2 equ.s     94 | Equivalence | 11 |         |    0 | 00/4000               | RND             equ   $EFAE          ; FAC = random number
+  106 |  2 equ.s     95 | Equivalence | 11 |         |    0 | 00/4000               | FOUT            equ   $ED34          ; Create a string at the start of the stack ($100−$110)
+  107 |  2 equ.s     96 | Equivalence | 11 |         |    0 | 00/4000               | MOVAF           equ   $EB63          ; Move FAC into ARG. On exit A=FACEXP and Z is set
+  108 |  2 equ.s     97 | Equivalence | 11 |         |    0 | 00/4000               | CONINT          equ   $E6FB          ; Convert FAC into a single byte number in X and FACLO
+  109 |  2 equ.s     98 | Equivalence | 11 |         |    0 | 00/4000               | YTOFAC          equ   $E301          ; Float y
+  110 |  2 equ.s     99 | Equivalence | 11 |         |    0 | 00/4000               | MOVMF           equ   $EB2B          ; Routine to pack FP number. Address of destination must be in Y
+  111 |  2 equ.s    100 | Comment     | 11 |         |    0 | 00/4000               |                                 ; (high) and X (low). Result is packed from FAC                             
+  112 |  2 equ.s    101 | Equivalence | 11 |         |    0 | 00/4000               | QUINT           equ   $EBF2          ; convert fac to 16bit INT at $A0 and $A1 (fac+3/fac+4)
+  113 |  2 equ.s    102 | Equivalence | 11 |         |    0 | 00/4000               | STROUT          equ   $DB3A          ;
+  114 |  2 equ.s    103 | Equivalence | 11 |         |    0 | 00/4000               | LINPRT          equ   $ED24          ; Converts the unsigned hexadecimal number in X (low) and A (high) into a decimal number and displays it.
+  115 |  2 equ.s    104 | Empty       | 11 |         |    0 | 00/4000               |                                      
+  116 |  2 equ.s    105 | Comment     | 11 |         |    0 | 00/4000               | * A intégrer :
+  117 |  2 equ.s    106 | Comment     | 11 |         |    0 | 00/4000               | *FSUB = $E7A7    OVERFLOW = $E8D5        ONE = $E913        FLOG = $E941    CONUPK = $E9E3  MUL10 = $EA39 
+  118 |  2 equ.s    107 | Comment     | 11 |         |    0 | 00/4000               | * FDIV = $EA66        DIVERR = $EAE1        MOVFM = $EAF9    FLOAT = $EB93        FCOMP = $EBB2      
+  119 |  2 equ.s    108 | Comment     | 11 |         |    0 | 00/4000               | * FINT = $EC23   SQR = $EE8D        FPWRT = $EE9    FEXP = $EF09      FCOS = $EFEA    FSIN = $EFF1  FTAN = $F03A 
+  120 |  2 equ.s    109 | Comment     | 11 |         |    0 | 00/4000               | * PIHALF = $F066   FATN = $F09E        
+  121 |  2 equ.s    110 | Comment     | 11 |         |    0 | 00/4000               | *
+  122 |  2 equ.s    111 | Comment     | 11 |         |    0 | 00/4000               | ************ Applesoft BASIC ************
+  123 |  2 equ.s    112 | Equivalence | 11 |         |    0 | 00/4000               | TXTTAB          equ   $67            ; $67/$68 address of beginning of BASIC Program ($0801 is default)
+  124 |  2 equ.s    113 | Equivalence | 11 |         |    0 | 00/4000               | PRGEND          equ   $AF            ; $AF/$B0 address of end of Applesoft program plus 1 or 2 of BASIC
+  125 |  2 equ.s    114 | Equivalence | 11 |         |    0 | 00/4000               | VARTAB          equ   $69            ; $69/$6A address of beginning of simple variables, just after Basic prog. (unless modified by LOMEN)
+  126 |  2 equ.s    115 | Equivalence | 11 |         |    0 | 00/4000               | ARYTAB          equ   $6B            ; $6B/$6C addresse of beginning of array variables, just after simple variables
+  127 |  2 equ.s    116 | Equivalence | 11 |         |    0 | 00/4000               | STREND          equ   $6D            ; $6D/$6E addresse of end of array variables
+  128 |  2 equ.s    117 | Equivalence | 11 |         |    0 | 00/4000               | MEMSIZ          equ   $73            ; $73/$74 : top of string data, set by HIMEM: (usually $9600),
+  129 |  2 equ.s    118 | Equivalence | 11 |         |    0 | 00/4000               | FRETOP          equ   $6F            ; $6F/$70 bottom of string data, growing downwards
+  130 |  2 equ.s    119 | Equivalence | 11 |         |    0 | 00/4000               | CHRGOT          equ   $B7            ; get char pointed by TXTPTR in A
+  131 |  2 equ.s    120 | Equivalence | 11 |         |    0 | 00/4000               | CHRGET          equ   $B1            ; advance TXTPRT and read char
+  132 |  2 equ.s    121 | Equivalence | 11 |         |    0 | 00/4000               | TXTPTR          equ   $B8            ; pointer $B8/$B9 used in chrget and chrgot
+  133 |  2 equ.s    122 | Equivalence | 11 |         |    0 | 00/4000               | CHKCOM          equ   $DEBE          ; check for comma and move TXTPTR forward
+  134 |  2 equ.s    123 | Equivalence | 11 |         |    0 | 00/4000               | FRMNUM          equ   $DD67          ; eval num. value, variable, expression pointed by TXTPTR, advance TXTPTR
+  135 |  2 equ.s    124 | Equivalence | 11 |         |    0 | 00/4000               | GETADR          equ   $E752          ; convert FAC to integer (to Y,A)
+  136 |  2 equ.s    125 | Equivalence | 11 |         |    0 | 00/4000               | FRMEVL          equ   $DD7B          ; evaluate any expression, result in FAC.
+  137 |  2 equ.s    126 | Equivalence | 11 |         |    0 | 00/4000               | FRESTR          equ   $E5FD          ; check if epression is a string. A = length, pointer in $5E/$5F
+  138 |  2 equ.s    127 | Equivalence | 11 |         |    0 | 00/4000               | ERRDIR          equ   $E306          ; illegal direct if not running
+  139 |  2 equ.s    128 | Empty       | 11 |         |    0 | 00/4000               |                                      
+  140 |  2 equ.s    129 | Equivalence | 11 |         |    0 | 00/4000               | PTRGET          equ   $DFE3          ; On entry, TXTPTR must be pointing to the first character of the variable's name.
+  141 |  2 equ.s    130 | Comment     | 11 |         |    0 | 00/4000               | * finds an Applesoft variable's memory address and puts a pointer to it in VARPNT ($83-$84) and in A/Y (low/hi). 
+  142 |  2 equ.s    131 | Comment     | 11 |         |    0 | 00/4000               | * The variable's name is left in VARNAM ($81-$82). It will work with any type of variable (integer, array element, string..)
+  143 |  2 equ.s    132 | Comment     | 11 |         |    0 | 00/4000               | * If the variable does not already exist, PTRGET will create it for you
+  144 |  2 equ.s    133 | Comment     | 11 |         |    0 | 00/4000               | * Advances TXTPTR.
+  145 |  2 equ.s    134 | Comment     | 11 |         |    0 | 00/4000               | * Set : vartype equ $11 ; str$=$ff, num=$00 
+  146 |  2 equ.s    135 | Comment     | 11 |         |    0 | 00/4000               | * set : numtype equ $12 ; int =$80, real = $00
+  147 |  2 equ.s    136 | Empty       | 11 |         |    0 | 00/4000               |                                      
+  148 |  2 equ.s    137 | Equivalence | 11 |         |    0 | 00/4000               | CHKNUM          equ   $DD6A          ; verifies that the most recent var found by PTRGET was numeric.
+  149 |  2 equ.s    138 | Comment     | 11 |         |    0 | 00/4000               |  *  https://www.brutaldeluxe.fr/documentation/thesourcerorsapprentice/thesourcerorsapprentice_v1n1.pdf
+  150 |  2 equ.s    139 | Comment     | 11 |         |    0 | 00/4000               |  * Type mismatch error if var not numeric
+  151 |  2 equ.s    140 | Empty       | 11 |         |    0 | 00/4000               |                                      
+  152 |  1   d.s     12 | Empty       | 11 |         |    0 | 00/4000               |                                      
+  153 |  1   d.s     13 | Comment     | 11 |         |    0 | 00/4000               | *<bp>
+  154 |  1   d.s     14 | Comment     | 11 |         |    0 | 00/4000               | *<sym>
+  155 |  1   d.s     15 | Empty       | 11 |         |    0 | 00/4000               | beginning                            
+  156 |  1   d.s     16 | Code        | 11 |         |    1 | 00/4000 : EA          |                 nop                  ; print divident and divisor
+  157 |  1   d.s     17 | Code        | 11 |         |    2 | 00/4001 : A2 E8       |                 ldx   #<{1000}       
+  158 |  1   d.s     18 | Code        | 11 |         |    3 | 00/4003 : 8E CB 40    |                 stx   dividend       
+  159 |  1   d.s     19 | Code        | 11 |         |    2 | 00/4006 : A9 03       |                 lda   #>{1000}       
+  160 |  1   d.s     20 | Code        | 11 |         |    3 | 00/4008 : 8D CC 40    |                 sta   dividend+1     
+  161 |  1   d.s     21 | Code        | 11 |         |    3 | 00/400B : 20 41 F9    |                 jsr   {$F941}        
+  162 |  1   d.s     22 | Code        | 11 |         |    2 | 00/400E : A9 A0       |                 lda   #" "           
+  163 |  1   d.s     23 | Code        | 11 |         |    3 | 00/4010 : 20 ED FD    |                 jsr   {$FDED}        
+  164 |  1   d.s     24 | Empty       | 11 |         |    0 | 00/4013               |                                      
+  165 |  1   d.s     25 | Code        | 11 |         |    2 | 00/4013 : A2 03       |                 ldx   #<{3}          
+  166 |  1   d.s     26 | Code        | 11 |         |    3 | 00/4015 : 8E C9 40    |                 stx   divisor        
+  167 |  1   d.s     27 | Code        | 11 |         |    2 | 00/4018 : A9 00       |                 lda   #>{3}          
+  168 |  1   d.s     28 | Code        | 11 |         |    3 | 00/401A : 8D CA 40    |                 sta   divisor+1      
+  169 |  1   d.s     29 | Code        | 11 |         |    3 | 00/401D : 20 41 F9    |                 jsr   {$F941}        
+  170 |  1   d.s     30 | Code        | 11 |         |    3 | 00/4020 : 20 8E FD    |                 jsr   {$FD8E}        
+  171 |  1   d.s     31 | Code        | 11 |         |    3 | 00/4023 : 20 8E FD    |                 jsr   {$FD8E}        
+  172 |  1   d.s     32 | Comment     | 11 |         |    0 | 00/4026               | *
+  173 |  1   d.s     33 | Comment     | 11 |         |    0 | 00/4026               | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *    
+  174 |  1   d.s     34 | Comment     | 11 |         |    0 | 00/4026               | *<bp>                                                           *
+  175 |  1   d.s     35 | Code        | 11 |         |    3 | 00/4026 : 20 5A 40    |                 jsr   divide         ; call to optimized division            *
+  176 |  1   d.s     36 | Comment     | 11 |         |    0 | 00/4029               | *                                                               *
+  177 |  1   d.s     37 | Comment     | 11 |         |    0 | 00/4029               | * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+  178 |  1   d.s     38 | Comment     | 11 |         |    0 | 00/4029               | *
+  179 |  1   d.s     39 | Code        | 11 |         |    2 | 00/4029 : A9 A4       |                 lda   #"$"           ; print rsult (integer part)
+  180 |  1   d.s     40 | Code        | 11 |         |    3 | 00/402B : 20 ED FD    |                 jsr   {$FDED}        
+  181 |  1   d.s     41 | Code        | 11 |         |    3 | 00/402E : AE CB 40    |                 ldx   dividend       
+  182 |  1   d.s     42 | Code        | 11 |         |    3 | 00/4031 : AD CC 40    |                 lda   dividend+1     
+  183 |  1   d.s     43 | Code        | 11 |         |    3 | 00/4034 : 20 41 F9    |                 jsr   {$F941}        
+  184 |  1   d.s     44 | Empty       | 11 |         |    0 | 00/4037               |                                      
+  185 |  1   d.s     45 | Code        | 11 |         |    3 | 00/4037 : 20 8E FD    |                 jsr   {$FD8E}        
+  186 |  1   d.s     46 | Empty       | 11 |         |    0 | 00/403A               |                                      
+  187 |  1   d.s     47 | Code        | 11 |         |    2 | 00/403A : A9 A4       |                 lda   #"$"           ; print remainder
+  188 |  1   d.s     48 | Code        | 11 |         |    3 | 00/403C : 20 ED FD    |                 jsr   {$FDED}        
+  189 |  1   d.s     49 | Code        | 11 |         |    3 | 00/403F : AE CD 40    |                 ldx   remainder      
+  190 |  1   d.s     50 | Code        | 11 |         |    3 | 00/4042 : AD CE 40    |                 lda   remainder+1    
+  191 |  1   d.s     51 | Code        | 11 |         |    3 | 00/4045 : 20 41 F9    |                 jsr   {$F941}        
+  192 |  1   d.s     52 | Empty       | 11 |         |    0 | 00/4048               |                                      
+  193 |  1   d.s     53 | Code        | 11 |         |    3 | 00/4048 : 20 8E FD    |                 jsr   {$FD8E}        ; print rsult (decimal part)
+  194 |  1   d.s     54 | Code        | 11 |         |    2 | 00/404B : A9 A4       |                 lda   #"$"           
+  195 |  1   d.s     55 | Code        | 11 |         |    3 | 00/404D : 20 ED FD    |                 jsr   {$FDED}        
+  196 |  1   d.s     56 | Code        | 11 |         |    3 | 00/4050 : AE C7 40    |                 ldx   decimal        
+  197 |  1   d.s     57 | Code        | 11 |         |    3 | 00/4053 : AD C8 40    |                 lda   decimal+1      
+  198 |  1   d.s     58 | Code        | 11 |         |    3 | 00/4056 : 20 41 F9    |                 jsr   {$F941}        
+  199 |  1   d.s     59 | Empty       | 11 |         |    0 | 00/4059               |                                      
+  200 |  1   d.s     60 | Comment     | 11 |         |    0 | 00/4059               | *<sym>
+  201 |  1   d.s     61 | Empty       | 11 |         |    0 | 00/4059               | end_of_program                       
+  202 |  1   d.s     62 | Code        | 11 |         |    1 | 00/4059 : 60          |                 rts                  
+  203 |  1   d.s     63 | Empty       | 11 |         |    0 | 00/405A               |                                      
+  204 |  1   d.s     64 | Comment     | 11 |         |    0 | 00/405A               | * $35E (862) cycles routine without decimal (including final RTS)
+  205 |  1   d.s     65 | Comment     | 11 |         |    0 | 00/405A               | * $76F (1903) cycles routine  with decimal (including final RTS)
+  206 |  1   d.s     66 | Comment     | 11 |         |    0 | 00/405A               | *<sym>
+  207 |  1   d.s     67 | Empty       | 11 |         |    0 | 00/405A               | divide                               
+  208 |  1   d.s     68 | Code        | 11 |         |    2 | 00/405A : A9 00       |                 lda   #0             ;preset remainder to 0
+  209 |  1   d.s     69 | Code        | 11 |         |    3 | 00/405C : 8D CD 40    |                 sta   remainder      
+  210 |  1   d.s     70 | Code        | 11 |         |    3 | 00/405F : 8D CE 40    |                 sta   remainder+1    
+  211 |  1   d.s     71 | Code        | 11 |         |    2 | 00/4062 : A2 10       |                 ldx   #16            ;repeat for each bit: ...
+  212 |  1   d.s     72 | Empty       | 11 |         |    0 | 00/4064               |                                      
+  213 |  1   d.s     73 | Comment     | 11 |         |    0 | 00/4064               | *<sym>
+  214 |  1   d.s     74 | Code        | 11 |         |    3 | 00/4064 : 0E CB 40    | divloop         asl   dividend       ;dividend lb & hb*2, msb -> Carry
+  215 |  1   d.s     75 | Code        | 11 |         |    3 | 00/4067 : 2E CC 40    |                 rol   dividend+1     
+  216 |  1   d.s     76 | Code        | 11 |         |    3 | 00/406A : 2E CD 40    |                 rol   remainder      ;remainder lb & hb * 2 + msb from carry
+  217 |  1   d.s     77 | Code        | 11 |         |    3 | 00/406D : 2E CE 40    |                 rol   remainder+1    
+  218 |  1   d.s     78 | Empty       | 11 |         |    0 | 00/4070               |                                      
+  219 |  1   d.s     79 | Code        | 11 |         |    3 | 00/4070 : AD CD 40    |                 lda   remainder      
+  220 |  1   d.s     80 | Code        | 11 |         |    1 | 00/4073 : 38          |                 sec                  
+  221 |  1   d.s     81 | Code        | 11 |         |    3 | 00/4074 : ED C9 40    |                 sbc   divisor        ;substract divisor to see if it fits in
+  222 |  1   d.s     82 | Code        | 11 |         |    1 | 00/4077 : A8          |                 tay                  ;lb result -> Y, for we may need it later
+  223 |  1   d.s     83 | Code        | 11 |         |    3 | 00/4078 : AD CE 40    |                 lda   remainder+1    
+  224 |  1   d.s     84 | Code        | 11 |         |    3 | 00/407B : ED CA 40    |                 sbc   divisor+1      
+  225 |  1   d.s     85 | Code        | 11 |         |    2 | 00/407E : 90 09       |                 bcc   skip           ;if carry=0 then divisor didn't fit in yet
+  226 |  1   d.s     86 | Empty       | 11 |         |    0 | 00/4080               |                                      
+  227 |  1   d.s     87 | Code        | 11 |         |    3 | 00/4080 : 8D CE 40    |                 sta   remainder+1    ;else save substraction result as new remainder,
+  228 |  1   d.s     88 | Code        | 11 |         |    3 | 00/4083 : 8C CD 40    |                 sty   remainder      
+  229 |  1   d.s     89 | Code        | 11 |         |    3 | 00/4086 : EE CB 40    |                 inc   {dividend}     ;and INCrement result cause divisor fit in 1 times
+  230 |  1   d.s     90 | Empty       | 11 |         |    0 | 00/4089               |                                      
+  231 |  1   d.s     91 | Comment     | 11 |         |    0 | 00/4089               | *<sym>
+  232 |  1   d.s     92 | Code        | 11 |         |    1 | 00/4089 : CA          | skip            dex                  
+  233 |  1   d.s     93 | Code        | 11 |         |    2 | 00/408A : D0 D8       |                 bne   divloop        
+  234 |  1   d.s     94 | Empty       | 11 |         |    0 | 00/408C               |                                      
+  235 |  1   d.s     95 | Code        | 11 |         |    3 | 00/408C : AD CD 40    |                 lda   remainder      
+  236 |  1   d.s     96 | Code        | 11 |         |    3 | 00/408F : 0D CE 40    |                 ora   remainder+1    
+  237 |  1   d.s     97 | Code        | 11 |         |    2 | 00/4092 : D0 01       |                 bne   doDecimal      
+  238 |  1   d.s     98 | Code        | 11 |         |    1 | 00/4094 : 60          |                 rts                  
+  239 |  1   d.s     99 | Empty       | 11 |         |    0 | 00/4095               |                                      
+  240 |  1   d.s    100 | Comment     | 11 |         |    0 | 00/4095               | *<sym>
+  241 |  1   d.s    101 | Empty       | 11 |         |    0 | 00/4095               | doDecimal                            
+  242 |  1   d.s    102 | Code        | 11 |         |    2 | 00/4095 : A9 00       |                 lda   #0             
+  243 |  1   d.s    103 | Code        | 11 |         |    3 | 00/4097 : 8D C7 40    |                 sta   decimal        
+  244 |  1   d.s    104 | Code        | 11 |         |    3 | 00/409A : 8D C8 40    |                 sta   decimal+1      
+  245 |  1   d.s    105 | Empty       | 11 |         |    0 | 00/409D               |                                      
+  246 |  1   d.s    106 | Code        | 11 |         |    2 | 00/409D : A2 10       |                 ldx   #16            
+  247 |  1   d.s    107 | Comment     | 11 |         |    0 | 00/409F               | *<sym>
+  248 |  1   d.s    108 | Empty       | 11 |         |    0 | 00/409F               | divloopdec                           ; on entry, remainder < divisor
+  249 |  1   d.s    109 | Code        | 11 |         |    3 | 00/409F : 0E CD 40    |                 asl   remainder      ; remainder = remainder * 2
+  250 |  1   d.s    110 | Code        | 11 |         |    3 | 00/40A2 : 2E CE 40    |                 rol   remainder+1    
+  251 |  1   d.s    111 | Empty       | 11 |         |    0 | 00/40A5               |                                      
+  252 |  1   d.s    112 | Code        | 11 |         |    1 | 00/40A5 : 38          |                 sec                  
+  253 |  1   d.s    113 | Code        | 11 |         |    3 | 00/40A6 : AD CD 40    |                 lda   remainder      ; A / Y = remainder - divisor
+  254 |  1   d.s    114 | Code        | 11 |         |    3 | 00/40A9 : ED C9 40    |                 sbc   divisor        
+  255 |  1   d.s    115 | Code        | 11 |         |    1 | 00/40AC : A8          |                 tay                  
+  256 |  1   d.s    116 | Code        | 11 |         |    3 | 00/40AD : AD CE 40    |                 lda   remainder+1    
+  257 |  1   d.s    117 | Code        | 11 |         |    3 | 00/40B0 : ED CA 40    |                 sbc   divisor+1      
+  258 |  1   d.s    118 | Code        | 11 |         |    1 | 00/40B3 : 08          |                 php                  ; save carry.
+  259 |  1   d.s    119 | Comment     | 11 |         |    0 | 00/40B4               |                                 ; carry is set if remainder >= divisor 
+  260 |  1   d.s    120 | Comment     | 11 |         |    0 | 00/40B4               |                                 ; (ie. substraction result is >= 0)
+  261 |  1   d.s    121 | Comment     | 11 |         |    0 | 00/40B4               |                                 ; 
+  262 |  1   d.s    122 | Code        | 11 |         |    3 | 00/40B4 : 2E C7 40    |                 rol   decimal        ; result shifted left, carry enters right
+  263 |  1   d.s    123 | Code        | 11 |         |    3 | 00/40B7 : 2E C8 40    |                 rol   decimal+1      ; if carry clear, 0 enters in result
+  264 |  1   d.s    124 | Comment     | 11 |         |    0 | 00/40BA               |                                 ; if carry set, 1 enters in result
+  265 |  1   d.s    125 | Code        | 11 |         |    1 | 00/40BA : 28          |                 plp                  ; restore carry
+  266 |  1   d.s    126 | Code        | 11 |         |    2 | 00/40BB : 90 06       |                 bcc   skipdec        ; if carry clear (<=> remainder < divisor) then loop
+  267 |  1   d.s    127 | Empty       | 11 |         |    0 | 00/40BD               |                                      
+  268 |  1   d.s    128 | Code        | 11 |         |    3 | 00/40BD : 8D CE 40    |                 sta   remainder+1    ; else, remainder = remainder
+  269 |  1   d.s    129 | Code        | 11 |         |    3 | 00/40C0 : 8C CD 40    |                 sty   remainder      
+  270 |  1   d.s    130 | Empty       | 11 |         |    0 | 00/40C3               |                                      
+  271 |  1   d.s    131 | Comment     | 11 |         |    0 | 00/40C3               | *<sym>
+  272 |  1   d.s    132 | Empty       | 11 |         |    0 | 00/40C3               | skipdec                              
+  273 |  1   d.s    133 | Empty       | 11 |         |    0 | 00/40C3               |                                      
+  274 |  1   d.s    134 | Code        | 11 |         |    1 | 00/40C3 : CA          |                 dex                  ; next loop
+  275 |  1   d.s    135 | Code        | 11 |         |    2 | 00/40C4 : D0 D9       |                 bne   divloopdec     
+  276 |  1   d.s    136 | Code        | 11 |         |    1 | 00/40C6 : 60          |                 rts                  
+  277 |  1   d.s    137 | Empty       | 11 |         |    0 | 00/40C7               |                                      
+  278 |  1   d.s    138 | Comment     | 11 |         |    0 | 00/40C7               | *
+  279 |  1   d.s    139 | Comment     | 11 |         |    0 | 00/40C7               | * * * * * * * * * * * * * * * 
+  280 |  1   d.s    140 | Comment     | 11 |         |    0 | 00/40C7               | *            DATA           *
+  281 |  1   d.s    141 | Comment     | 11 |         |    0 | 00/40C7               | * * * * * * * * * * * * * * * 
+  282 |  1   d.s    142 | Comment     | 11 |         |    0 | 00/40C7               | *
+  283 |  1   d.s    143 | Comment     | 11 |         |    0 | 00/40C7               | *<m2>
+  284 |  1   d.s    144 | Comment     | 11 |         |    0 | 00/40C7               | *<sym>
+  285 |  1   d.s    145 | Data        | 11 |         |    2 | 00/40C7 : 00 00       | decimal         ds    2              
+  286 |  1   d.s    146 | Comment     | 11 |         |    0 | 00/40C9               | *<sym>
+  287 |  1   d.s    147 | Data        | 11 |         |    2 | 00/40C9 : 00 00       | divisor         ds    2              
+  288 |  1   d.s    148 | Comment     | 11 |         |    0 | 00/40CB               | *<m1>
+  289 |  1   d.s    149 | Comment     | 11 |         |    0 | 00/40CB               | *<sym>
+  290 |  1   d.s    150 | Data        | 11 |         |    2 | 00/40CB : 00 00       | dividend        ds    2              
+  291 |  1   d.s    151 | Comment     | 11 |         |    0 | 00/40CD               | *<m2>
+  292 |  1   d.s    152 | Comment     | 11 |         |    0 | 00/40CD               | *<sym>
+  293 |  1   d.s    153 | Data        | 11 |         |    2 | 00/40CD : 00 00       | remainder       ds    2              
+  294 |  1   d.s    154 | Equivalence | 11 |         |    0 | 00/40CF               | result          =     dividend       
+  295 |  1   d.s    155 | Empty       | 11 |         |    0 | 00/40CF               |                                      
+------+-----------------+-------------+----+---------+------+-----------------------+-------------------------------------------------------------------
