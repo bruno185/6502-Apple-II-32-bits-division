@@ -13,7 +13,7 @@ beginning
         jsr prndivid            ; print dividend
         jsr crout
         jsr Dodivide            ; exec division, integer part
-        jsr prndivid            ; print result of division
+        jsr prndivid            ; print integer part of result
         jsr crout
         jsr prnrem              ; print remainder
         jsr doDecimal           ; exec division, decimal part
