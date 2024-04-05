@@ -4,10 +4,11 @@
 *
         org $4000
         put equ
+
+
 *<bp>
 *<sym>
 beginning
-
         jsr loadnumbers
         jsr initvar
         jsr prndivid
@@ -129,7 +130,7 @@ skipdec
 **************
 
 * * * * * * * * * * * * * * * * * * * * 
-*               Functions
+*               Utilities
 * * * * * * * * * * * * * * * * * * * * 
 *<sym>
 loadnumbers
