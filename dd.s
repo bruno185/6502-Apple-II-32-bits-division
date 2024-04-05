@@ -6,9 +6,7 @@
 *<bp>
 *<sym>
 beginning
-        nop
-        jsr $EA66
-        jsr FOUT
+
         jsr loadnumbers
         jsr initvar
         jsr prndivid
